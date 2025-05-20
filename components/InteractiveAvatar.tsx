@@ -44,70 +44,29 @@ function InteractiveAvatar() {
   const { startVoiceChat } = useVoiceChat();
 
   const [config, setConfig] = useState<StartAvatarRequest>(DEFAULT_CONFIG);
-
   const mediaStream = useRef<HTMLVideoElement>(null);
 
-  async function fetchAccessToken() {
-    try {
-      const response = await fetch("/api/get-access-token", {
-        method: "POST",
-      });
-      const token = await response.text();
-
-      console.log("Access Token:", token); // Log the token to verify
-
-      return token;
-    } catch (error) {
-      console.error("Error fetching access token:", error);
-      throw error;
-    }
-  }
-
-  const startSessionV2 = useMemoizedFn(async (isVoiceChat: boolean) => {
-    try {
-      const newToken = await fetchAccessToken();
-      const avatar = initAvatar(newToken);
-
-      avatar.on(StreamingEvents.AVATAR_START_TALKING, (e) => {
-        console.log("Avatar started talking", e);
-      });
-      avatar.on(StreamingEvents.AVATAR_STOP_TALKING, (e) => {
-        console.log("Avatar stopped talking", e);
-      });
-      avatar.on(StreamingEvents.STREAM_DISCONNECTED, () => {
-        console.log("Stream disconnected");
-      });
-      avatar.on(StreamingEvents.STREAM_READY, (event) => {
-        console.log(">>>>> Stream ready:", event.detail);
-      });
-      avatar.on(StreamingEvents.USER_START, (event) => {
-        console.log(">>>>> User started talking:", event);
-      });
-      avatar.on(StreamingEvents.USER_STOP, (event) => {
-        console.log(">>>>> User stopped talking:", event);
-      });
-      avatar.on(StreamingEvents.USER_END_MESSAGE, (event) => {
-        console.log(">>>>> User end message:", event);
-      });
-      avatar.on(StreamingEvents.USER_TALKING_MESSAGE, (event) => {
-        console.log(">>>>> User talking message:", event);
-      });
-      avatar.on(StreamingEvents.AVATAR_TALKING_MESSAGE, (event) => {
-        console.log(">>>>> Avatar talking message:", event);
-      });
-      avatar.on(StreamingEvents.AVATAR_END_MESSAGE, (event) => {
-        console.log(">>>>> Avatar end message:", event);
-      });
-
-      await startAvatar(config);
-
-      if (isVoiceChat) {
-        await startVoiceChat();
+  // Otomatis mulai sesi avatar saat komponen dimount
+  useEffect(() => {
+    let started = false;
+    async function autoStart() {
+      if (!started && sessionState === StreamingAvatarSessionState.INACTIVE) {
+        started = true;
+        try {
+          const response = await fetch("/api/get-access-token", { method: "POST" });
+          const token = await response.text();
+          const avatar = initAvatar(token);
+          await startAvatar(config);
+          await startVoiceChat();
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.error("Error auto starting avatar session:", error);
+        }
       }
-    } catch (error) {
-      console.error("Error starting avatar session:", error);
     }
-  });
+    autoStart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useUnmount(() => {
     stopAvatar();
@@ -124,25 +83,18 @@ function InteractiveAvatar() {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="flex flex-col rounded-xl bg-zinc-900 overflow-hidden">
+      <div className="flex flex-col rounded-xl bg-white border border-[#DDEEE5] overflow-hidden">
         <div className="relative w-full aspect-video overflow-hidden flex flex-col items-center justify-center">
-          {sessionState !== StreamingAvatarSessionState.INACTIVE ? (
-            <AvatarVideo ref={mediaStream} />
-          ) : (
-            <AvatarConfig config={config} onConfigChange={setConfig} />
-          )}
+          {/* Hanya tampilkan video/avatar/chat, tidak ada form konfigurasi */}
+          <AvatarVideo ref={mediaStream} />
         </div>
-        <div className="flex flex-col gap-3 items-center justify-center p-4 border-t border-zinc-700 w-full">
+        <div className="flex flex-col gap-3 items-center justify-center p-4 border-t border-[#DDEEE5] w-full">
           {sessionState === StreamingAvatarSessionState.CONNECTED ? (
             <AvatarControls />
           ) : sessionState === StreamingAvatarSessionState.INACTIVE ? (
             <div className="flex flex-row gap-4">
-              <Button onClick={() => startSessionV2(true)}>
-                Start Voice Chat
-              </Button>
-              <Button onClick={() => startSessionV2(false)}>
-                Start Text Chat
-              </Button>
+              {/* Loading state, bisa tambahkan spinner jika perlu */}
+              <span className="text-[#357A5B]">Memulai sesi chat...</span>
             </div>
           ) : (
             <LoadingIcon />

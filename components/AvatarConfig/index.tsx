@@ -53,43 +53,47 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
   }, [config.avatarName]);
 
   return (
-    <div className="relative flex flex-col gap-4 w-[550px] py-8 max-h-full overflow-y-auto px-4">
+    <div className="relative flex flex-col gap-6 py-4 sm:py-6 max-h-full overflow-y-auto px-0 sm:px-2 w-full">
       <Field label="Custom Knowledge Base ID">
         <Input
+          className="w-full"
           placeholder="Enter custom knowledge base ID"
           value={config.knowledgeId}
           onChange={(value) => onChange("knowledgeId", value)}
         />
       </Field>
       <Field label="Avatar ID">
-        <Select
-          isSelected={(option) =>
-            typeof option === "string"
-              ? !!selectedAvatar?.isCustom
-              : option.avatar_id === selectedAvatar?.avatarId
-          }
-          options={[...AVATARS, "CUSTOM"]}
-          placeholder="Select Avatar"
-          renderOption={(option) => {
-            return typeof option === "string"
-              ? "Custom Avatar ID"
-              : option.name;
-          }}
-          value={
-            selectedAvatar?.isCustom ? "Custom Avatar ID" : selectedAvatar?.name
-          }
-          onSelect={(option) => {
-            if (typeof option === "string") {
-              onChange("avatarName", "");
-            } else {
-              onChange("avatarName", option.avatar_id);
+        <div className="w-full">
+          <Select
+            isSelected={(option) =>
+              typeof option === "string"
+                ? !!selectedAvatar?.isCustom
+                : option.avatar_id === selectedAvatar?.avatarId
             }
-          }}
-        />
+            options={[...AVATARS, "CUSTOM"]}
+            placeholder="Select Avatar"
+            renderOption={(option) => {
+              return typeof option === "string"
+                ? "Custom Avatar ID"
+                : option.name;
+            }}
+            value={
+              selectedAvatar?.isCustom ? "Custom Avatar ID" : selectedAvatar?.name
+            }
+            onSelect={(option) => {
+              if (typeof option === "string") {
+                onChange("avatarName", "");
+              } else {
+                onChange("avatarName", option.avatar_id);
+              }
+            }}
+          />
+        </div>
       </Field>
       {selectedAvatar?.isCustom && (
         <Field label="Custom Avatar ID">
           <Input
+            className="w-full"
             placeholder="Enter custom avatar ID"
             value={config.avatarName}
             onChange={(value) => onChange("avatarName", value)}
@@ -97,34 +101,40 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
         </Field>
       )}
       <Field label="Language">
-        <Select
-          isSelected={(option) => option.value === config.language}
-          options={STT_LANGUAGE_LIST}
-          renderOption={(option) => option.label}
-          value={
-            STT_LANGUAGE_LIST.find((option) => option.value === config.language)
-              ?.label
-          }
-          onSelect={(option) => onChange("language", option.value)}
-        />
+        <div className="w-full">
+          <Select
+            isSelected={(option) => option.value === config.language}
+            options={STT_LANGUAGE_LIST}
+            renderOption={(option) => option.label}
+            value={
+              STT_LANGUAGE_LIST.find((option) => option.value === config.language)
+                ?.label
+            }
+            onSelect={(option) => onChange("language", option.value)}
+          />
+        </div>
       </Field>
       <Field label="Avatar Quality">
-        <Select
-          isSelected={(option) => option === config.quality}
-          options={Object.values(AvatarQuality)}
-          renderOption={(option) => option}
-          value={config.quality}
-          onSelect={(option) => onChange("quality", option)}
-        />
+        <div className="w-full">
+          <Select
+            isSelected={(option) => option === config.quality}
+            options={Object.values(AvatarQuality)}
+            renderOption={(option) => option}
+            value={config.quality}
+            onSelect={(option) => onChange("quality", option)}
+          />
+        </div>
       </Field>
       <Field label="Voice Chat Transport">
-        <Select
-          isSelected={(option) => option === config.voiceChatTransport}
-          options={Object.values(VoiceChatTransport)}
-          renderOption={(option) => option}
-          value={config.voiceChatTransport}
-          onSelect={(option) => onChange("voiceChatTransport", option)}
-        />
+        <div className="w-full">
+          <Select
+            isSelected={(option) => option === config.voiceChatTransport}
+            options={Object.values(VoiceChatTransport)}
+            renderOption={(option) => option}
+            value={config.voiceChatTransport}
+            onSelect={(option) => onChange("voiceChatTransport", option)}
+          />
+        </div>
       </Field>
       {showMore && (
         <>
@@ -133,6 +143,7 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
           </h1>
           <Field label="Custom Voice ID">
             <Input
+              className="w-full"
               placeholder="Enter custom voice ID"
               value={config.voice?.voiceId}
               onChange={(value) =>
@@ -141,43 +152,49 @@ export const AvatarConfig: React.FC<AvatarConfigProps> = ({
             />
           </Field>
           <Field label="Emotion">
-            <Select
-              isSelected={(option) => option === config.voice?.emotion}
-              options={Object.values(VoiceEmotion)}
-              renderOption={(option) => option}
-              value={config.voice?.emotion}
-              onSelect={(option) =>
-                onChange("voice", { ...config.voice, emotion: option })
-              }
-            />
+            <div className="w-full">
+              <Select
+                isSelected={(option) => option === config.voice?.emotion}
+                options={Object.values(VoiceEmotion)}
+                renderOption={(option) => option}
+                value={config.voice?.emotion}
+                onSelect={(option) =>
+                  onChange("voice", { ...config.voice, emotion: option })
+                }
+              />
+            </div>
           </Field>
           <Field label="ElevenLabs Model">
-            <Select
-              isSelected={(option) => option === config.voice?.model}
-              options={Object.values(ElevenLabsModel)}
-              renderOption={(option) => option}
-              value={config.voice?.model}
-              onSelect={(option) =>
-                onChange("voice", { ...config.voice, model: option })
-              }
-            />
+            <div className="w-full">
+              <Select
+                isSelected={(option) => option === config.voice?.model}
+                options={Object.values(ElevenLabsModel)}
+                renderOption={(option) => option}
+                value={config.voice?.model}
+                onSelect={(option) =>
+                  onChange("voice", { ...config.voice, model: option })
+                }
+              />
+            </div>
           </Field>
           <h1 className="text-zinc-100 w-full text-center mt-5">
             STT Settings
           </h1>
           <Field label="Provider">
-            <Select
-              isSelected={(option) => option === config.sttSettings?.provider}
-              options={Object.values(STTProvider)}
-              renderOption={(option) => option}
-              value={config.sttSettings?.provider}
-              onSelect={(option) =>
-                onChange("sttSettings", {
-                  ...config.sttSettings,
-                  provider: option,
-                })
-              }
-            />
+            <div className="w-full">
+              <Select
+                isSelected={(option) => option === config.sttSettings?.provider}
+                options={Object.values(STTProvider)}
+                renderOption={(option) => option}
+                value={config.sttSettings?.provider}
+                onSelect={(option) =>
+                  onChange("sttSettings", {
+                    ...config.sttSettings,
+                    provider: option,
+                  })
+                }
+              />
+            </div>
           </Field>
         </>
       )}
