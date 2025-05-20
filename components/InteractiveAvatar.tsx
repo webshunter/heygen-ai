@@ -24,14 +24,15 @@ import { AVATARS } from "@/app/lib/constants";
 
 const DEFAULT_CONFIG: StartAvatarRequest = {
   quality: AvatarQuality.Low,
-  avatarName: AVATARS[0].avatar_id,
-  knowledgeId: undefined,
+  avatarName: "Alessandra_Chair_Sitting_public",
+  knowledgeId: "6eca1449475743d6accb15fb5c3a3e86",
   voice: {
+    voiceId: "UbEwnGnMT97nx0SDDO5T",
     rate: 1.5,
     emotion: VoiceEmotion.EXCITED,
     model: ElevenLabsModel.eleven_flash_v2_5,
   },
-  language: "en",
+  language: "id",
   voiceChatTransport: VoiceChatTransport.LIVEKIT,
   sttSettings: {
     provider: STTProvider.DEEPGRAM,

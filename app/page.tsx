@@ -61,52 +61,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section className="py-16 px-4 bg-[#F6FAF8]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10 text-[#1A2E22]">Pricing</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Starter */}
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
-              <span className="font-bold text-lg text-[#357A5B] mb-2">Starter</span>
-              <span className="text-2xl font-bold mb-2">Rp 0/bulan</span>
-              <ul className="mb-6 text-[#357A5B] text-sm list-disc pl-5">
-                <li>Konsultasi teks dengan AI</li>
-                <li>Topik terbatas basic</li>
-                <li>Durasi 15 menit/sesi</li>
-              </ul>
-              <button className="border border-[#357A5B] text-[#357A5B] px-5 py-2 rounded hover:bg-[#357A5B] hover:text-white transition font-semibold">Pilih</button>
-            </div>
-            {/* Professional */}
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
-              <span className="font-bold text-lg text-[#357A5B] mb-2">Professional</span>
-              <span className="text-2xl font-bold mb-2">Rp 299.000/bulan</span>
-              <ul className="mb-6 text-[#357A5B] text-sm list-disc pl-5">
-                <li>Konsultasi teks & video dengan AI</li>
-                <li>Semua topik bisnis</li>
-                <li>Durasi 60 menit/sesi</li>
-                <li>Laporan PDF</li>
-                <li>Prioritas dukungan</li>
-              </ul>
-              <button className="bg-[#357A5B] text-white px-5 py-2 rounded font-semibold shadow hover:bg-[#285C45] transition">Pilih</button>
-            </div>
-            {/* Enterprise */}
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
-              <span className="font-bold text-lg text-[#357A5B] mb-2">Enterprise</span>
-              <span className="text-2xl font-bold mb-2">Rp 999.000/bulan</span>
-              <ul className="mb-6 text-[#357A5B] text-sm list-disc pl-5">
-                <li>Semua fitur Professional</li>
-                <li>Konsultasi tak terbatas</li>
-                <li>Analisis data bisnis</li>
-                <li>Perencanaan strategis</li>
-                <li>Dukungan 24/7</li>
-              </ul>
-              <button className="bg-[#357A5B] text-white px-5 py-2 rounded font-semibold shadow hover:bg-[#285C45] transition">Pilih</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Tentang Kami Section */}
       <section className="py-16 px-4 bg-[#DDEEE5]">
         <div className="max-w-4xl mx-auto text-center">
@@ -136,11 +90,24 @@ export default function App() {
             </svg>
           </button>
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-full h-full flex items-center justify-center">
-                  <InteractiveAvatar />
-                </div>
+            <div 
+              id="heygen-streaming-embed"
+              className="w-[90vw] max-w-3xl h-[80vh] max-h-[700px] bg-white rounded-lg shadow-xl overflow-hidden"
+              style={{
+                position: 'relative',
+                zIndex: 9999,
+                transition: 'all linear 0.1s',
+              }}
+            >
+              <div id="heygen-streaming-container" className="w-full h-full">
+                <iframe
+                  src="https://labs.heygen.com/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJBbGVzc2FuZHJhX0NoYWlyX1NpdHRpbmdfcHVibGljIiwicHJldmlld0ltZyI6Imh0dHBzOi8vZmlsZXMyLmhleWdlbi5haS9hdmF0YXIvdjMvODllMDdiODI2ZjFjNGNiMWE1NTQ5MjAxY2RkOGY0ZDZfNTUzMDAvcHJldmlld190YXJnZXQud2VicCIsIm5lZWRSZW1vdmVCYWNrZ3JvdW5kIjpmYWxzZSwia25vd2xlZGdlQmFzZUlkIjoiZGVtby0xIiwidXNlcm5hbWUiOiI0ODZhN2RlNzc0N2E0OGI2YWQ2OTU5NTBjNTc0MzRhNCJ9&inIFrame=1&lang=id"
+                  className="w-full h-full"
+                  allow="microphone"
+                  title="Streaming Embed"
+                  role="dialog"
+                  allowFullScreen={false}
+                />
               </div>
             </div>
           </div>

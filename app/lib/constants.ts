@@ -1,5 +1,9 @@
 export const AVATARS = [
   {
+    avatar_id: "Alessandra_Chair_Sitting_public",
+    name: "Alessandra",
+  },
+  {
     avatar_id: "Ann_Therapist_public",
     name: "Ann Therapist",
   },
