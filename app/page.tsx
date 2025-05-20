@@ -66,6 +66,17 @@ export default function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10 text-[#1A2E22]">Pricing</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Starter */}
+            <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
+              <span className="font-bold text-lg text-[#357A5B] mb-2">Starter</span>
+              <span className="text-2xl font-bold mb-2">Rp 0/bulan</span>
+              <ul className="mb-6 text-[#357A5B] text-sm list-disc pl-5">
+                <li>Konsultasi teks dengan AI</li>
+                <li>Topik terbatas basic</li>
+                <li>Durasi 15 menit/sesi</li>
+              </ul>
+              <button className="border border-[#357A5B] text-[#357A5B] px-5 py-2 rounded hover:bg-[#357A5B] hover:text-white transition font-semibold">Pilih</button>
+            </div>
             {/* Professional */}
             <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
               <span className="font-bold text-lg text-[#357A5B] mb-2">Professional</span>
@@ -91,17 +102,6 @@ export default function App() {
                 <li>Dukungan 24/7</li>
               </ul>
               <button className="bg-[#357A5B] text-white px-5 py-2 rounded font-semibold shadow hover:bg-[#285C45] transition">Pilih</button>
-            </div>
-            {/* Starter */}
-            <div className="bg-white rounded-lg shadow p-8 flex flex-col items-start">
-              <span className="font-bold text-lg text-[#357A5B] mb-2">Starter</span>
-              <span className="text-2xl font-bold mb-2">Rp 0/bulan</span>
-              <ul className="mb-6 text-[#357A5B] text-sm list-disc pl-5">
-                <li>Konsultasi teks dengan AI</li>
-                <li>Topik terbatas basic</li>
-                <li>Durasi 15 menit/sesi</li>
-              </ul>
-              <button className="border border-[#357A5B] text-[#357A5B] px-5 py-2 rounded hover:bg-[#357A5B] hover:text-white transition font-semibold">Pilih</button>
             </div>
           </div>
         </div>
