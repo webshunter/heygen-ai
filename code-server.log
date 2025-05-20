@@ -1,0 +1,47 @@
+[2025-05-20T01:43:13.558Z] info  code-server 4.100.2 9dd999ba78032163d606fadd531de5e1fcae5443
+[2025-05-20T01:43:13.588Z] info  Using user-data-dir /home/vds/.local/share/code-server
+[2025-05-20T01:43:13.604Z] info  Using config file /home/vds/.config/code-server/config.yaml
+[2025-05-20T01:43:13.604Z] info  HTTP server listening on http://0.0.0.0:2121/
+[2025-05-20T01:43:13.604Z] info    - Authentication is disabled
+[2025-05-20T01:43:13.604Z] info    - Not serving HTTPS
+[2025-05-20T01:43:13.604Z] info  Session server listening on /home/vds/.local/share/code-server/code-server-ipc.sock
+[08:43:21] 
+
+
+
+
+[08:43:21] Extension host agent started.
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[08:43:22] [127.0.0.1][d6936163][ManagementConnection] New connection established.
+[08:43:23] ComputeTargetPlatform: linux-x64
+[08:43:23] [127.0.0.1][0a4bfdf6][ExtensionHostConnection] New connection established.
+[08:43:23] [127.0.0.1][0a4bfdf6][ExtensionHostConnection] <71358> Launched Extension Host Process.
+[08:43:26] ComputeTargetPlatform: linux-x64
+[08:43:30] Getting Manifest... sourcegraph.cody-ai
+[08:43:33] Installing extension: sourcegraph.cody-ai {
+  productVersion: { version: '1.100.2', date: '2025-05-15T19:04:25.944Z' },
+  pinned: false,
+  operation: 3,
+  isApplicationScoped: false,
+  profileLocation: Or {
+    scheme: 'file',
+    authority: '',
+    path: '/home/vds/.local/share/code-server/extensions/extensions.json',
+    query: '',
+    fragment: '',
+    _formatted: 'file:///home/vds/.local/share/code-server/extensions/extensions.json',
+    _fsPath: '/home/vds/.local/share/code-server/extensions/extensions.json'
+  }
+}
+[08:51:07] Extracted extension to file:///home/vds/.local/share/code-server/extensions/sourcegraph.cody-ai-1.94.2-universal: sourcegraph.cody-ai
+[08:51:07] Renamed to /home/vds/.local/share/code-server/extensions/sourcegraph.cody-ai-1.94.2-universal
+[08:51:07] Marked extension as removed sourcegraph.cody-ai-1.94.0-universal
+[08:51:07] Extension installed successfully: sourcegraph.cody-ai file:///home/vds/.local/share/code-server/extensions/extensions.json
+[11:38:40] [127.0.0.1][d6936163][ManagementConnection] The client has disconnected gracefully, so the connection will be disposed.
+[11:38:40] [127.0.0.1][0a4bfdf6][ExtensionHostConnection] <71358> Extension Host Process exited with code: 0, signal: null.
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda_bg.wasm
+File not found: /usr/lib/code-server/lib/vscode/node_modules/vsda/rust/web/vsda.js
+[11:39:13] [127.0.0.1][f5a1bc31][ManagementConnection] New connection established.
+[11:39:15] [127.0.0.1][3e39f71b][ExtensionHostConnection] New connection established.
+[11:39:15] [127.0.0.1][3e39f71b][ExtensionHostConnection] <272598> Launched Extension Host Process.
