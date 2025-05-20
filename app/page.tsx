@@ -125,44 +125,25 @@ export default function App() {
 
       {/* Modal Popup for Chat */}
       {showChat && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-40 backdrop-blur-sm transition-all duration-300 w-screen h-screen">
-          <div className="flex flex-col h-full w-full bg-white animate-fadeInUp">
-            {/* Header Popup */}
-            <div className="flex flex-col gap-1 px-4 sm:px-8 pt-4 sm:pt-6 pb-2 sm:pb-3 border-b border-[#DDEEE5] bg-[#DDEEE5]">
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-bold text-[#357A5B]">AI Bisnis Chat</span>
-                <button
-                  className="text-[#357A5B] hover:bg-[#C7E5D2] hover:text-[#285C45] transition rounded-full p-1.5 text-xl font-bold focus:outline-none focus:ring-2 focus:ring-[#357A5B]"
-                  onClick={() => setShowChat(false)}
-                  aria-label="Tutup"
-                >
-                  <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 6L14 14M14 6L6 14" stroke="#357A5B" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                </button>
-              </div>
-              <span className="text-sm text-[#357A5B] opacity-80 font-normal mt-1 mb-2">Konsultasi bisnis AI untuk UMKM. Mulai chat gratis sekarang!</span>
-            </div>
-            <div className="flex-1 flex flex-col md:flex-row w-full h-full bg-[#F6FAF8]">
-              {/* Area Video/Avatar */}
-              <div className="flex-1 flex items-center justify-center min-h-[220px] bg-[#DDEEE5] md:border-r border-[#DDEEE5] p-0 md:p-6">
-                <div className="w-full max-w-2xl aspect-video bg-[#F6FAF8] rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+        <div className="fixed inset-0 z-50 w-screen h-screen bg-black bg-opacity-40 backdrop-blur-sm transition-all duration-300">
+          <button
+            className="absolute top-4 right-4 z-50 text-[#357A5B] hover:bg-[#C7E5D2] hover:text-[#285C45] transition rounded-full p-2 text-2xl font-bold focus:outline-none focus:ring-2 focus:ring-[#357A5B]"
+            onClick={() => setShowChat(false)}
+            aria-label="Tutup"
+          >
+            <svg width="28" height="28" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 6L14 14M14 6L6 14" stroke="#357A5B" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="w-full h-full flex items-center justify-center">
                   <InteractiveAvatar />
                 </div>
               </div>
-              {/* Area Chat (jika ada chat/message history, bisa diletakkan di sini) */}
-              {/* <div className="w-full md:w-[400px] flex flex-col bg-white p-4 shadow-xl h-full overflow-y-auto"></div> */}
             </div>
           </div>
-          <style jsx global>{`
-            @keyframes fadeInUp {
-              from { opacity: 0; transform: translateY(40px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-            .animate-fadeInUp {
-              animation: fadeInUp 0.4s cubic-bezier(0.4,0,0.2,1);
-            }
-          `}</style>
         </div>
       )}
     </div>
