@@ -14,7 +14,7 @@ const fontMono = FontMono({
 
 export const metadata: Metadata = {
   title: {
-    default: "HeyGen Interactive Avatar SDK Demo",
+    default: "Ina AI Agen",
     template: `%s - HeyGen Interactive Avatar SDK Demo`,
   },
   icons: {
@@ -29,7 +29,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${fontSans.variable} ${fontMono.variable}`}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
+      </head>
+      <body style={{ fontFamily: 'Poppins, sans-serif' }} className={`${fontSans.variable} ${fontMono.variable}`}>
         {children}
       </body>
     </html>
