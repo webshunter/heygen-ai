@@ -1,0 +1,156 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "groq-webhook",
+        "options": {
+          "allowedOrigins": "*",
+          "responseMode": "lastNode",
+          "responseData": "firstEntryJson"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        380,
+        -120
+      ],
+      "id": "d00d27fb-6f0c-4d4a-bce6-09cca59d969a",
+      "name": "Webhook",
+      "webhookId": "83ceceb4-911c-4595-a7c7-f8fd119e89e9"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Susun messages untuk LLM\n\nreturn [{\n  json: {\n    messages: [\n      {\n        role: 'system',\n        content: 'Anda adalah AI yang membantu menjawab pertanyaan pengguna.'\n      },\n      {\n        role: 'user',\n        content: $input.item.json.message\n      }\n    ]\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        580,
+        -120
+      ],
+      "id": "fc628f98-4626-42b2-bd50-62e328f74df7",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Jawab pertanyaan berikut dengan jelas dan ringkas.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{ $json.messages[0].content }}"
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "={{ $json.messages[1].content }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        780,
+        -120
+      ],
+      "id": "ef1627a9-7c40-441a-ae83-57a746f0460b",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "options": {
+          "maxTokensToSample": 1024,
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        900,
+        100
+      ],
+      "id": "f3236f56-5f55-4ac1-8ae9-405bfcece819",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "gfuZN4X8XbGF27h0",
+          "name": "Groq account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Format response\ntry {\n  const aiResponse = $input.item.json.text || $input.item.json.choices?.[0]?.message?.content || '';\n  return { json: { status: 'success', aiResponse, timestamp: new Date().toISOString() } };\n} catch (error) {\n  return { json: { status: 'error', error: error.message, timestamp: new Date().toISOString() } };\n}"
+      },
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        -120
+      ],
+      "id": "c8ee25cf-dd0b-464d-9750-268c3d4666bd",
+      "name": "Format Response"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8f4a1b39-ca4e-4d46-b49e-d59336b9023b",
+  "meta": {
+    "instanceId": "916221c94e2be35e17f13012cf8125638f80bf09a9b8db9f1d30baac0fc61f89"
+  },
+  "id": "4w3kKFY7jIIDywuU",
+  "tags": []
+}

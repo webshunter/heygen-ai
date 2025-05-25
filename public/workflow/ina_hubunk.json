@@ -1,0 +1,155 @@
+{
+  "name": "ina-hubunk",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "groq-webhook",
+        "responseMode": "lastNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        60
+      ],
+      "id": "a1715f2d-ef0b-4165-9508-993df5de42d2",
+      "name": "Webhook",
+      "webhookId": "83ceceb4-911c-4595-a7c7-f8fd119e89e9"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Susun messages untuk LLM\n\nreturn [{\n  json: {\n    messages: [\n      {\n        role: 'system',\n        content: 'Anda adalah AI yang membantu menjawab pertanyaan pengguna.'\n      },\n      {\n        role: 'user',\n        content: items[0].json.body.message\n      }\n    ]\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        60
+      ],
+      "id": "6cb28559-ee85-4e59-b971-7ff249dbce7b",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Anda adalah asisten AI yang membantu UMKM memahami HUBUNK. Tugas Anda adalah memberikan informasi yang jelas, terstruktur, dan mudah dipahami.\n\nDEFINISI & VISI HUBUNK:\nHUBUNK adalah ekosistem digital yang didesain khusus untuk UMKM Indonesia dengan visi:\n- Membantu UMKM naik level\n- Mengatasi masalah umum UMKM\n- Menciptakan solusi praktis bisnis\n- Membangun komunitas UMKM yang kuat\n\nMASALAH UMKM YANG DIATASI:\n1. Penjualan:\n   - Penjualan seret\n   - Pasar terbatas\n   - Kesulitan menjangkau pelanggan baru\n   - Persaingan yang ketat\n\n2. Pemasaran:\n   - Promosi ribet\n   - Biaya marketing tinggi\n   - Kesulitan membuat konten\n   - Kurangnya visibilitas online\n\n3. Operasional:\n   - Manajemen bisnis rumit\n   - Kesulitan tracking penjualan\n   - Inventory management\n   - Laporan keuangan\n\nSOLUSI HUBUNK:\n\n1. Bisnis Lebih Terlihat, Pelanggan Lebih Dekat:\n   a) Profil Bisnis:\n      - Tampilan profesional\n      - Katalog produk digital\n      - Portfolio bisnis\n      - Testimonial pelanggan\n      - Statistik bisnis\n\n   b) Website Builder:\n      - Template responsif\n      - Custom domain\n      - SEO optimization\n      - Analytics dashboard\n      - Payment gateway\n      - Shopping cart\n\n   c) Social Media UMKM:\n      - Content creation tools\n      - Post scheduler\n      - Hashtag generator\n      - Engagement tracker\n      - Campaign manager\n\n2. Kerja Cerdas dengan AI & Komunitas:\n   a) AI Business Assistant:\n      - Market analysis\n      - Price recommendations\n      - Sales forecasting\n      - Competitor tracking\n      - Trend analysis\n      - Customer insights\n\n   b) Komunitas UMKM:\n      - Grup usaha sejenis\n      - Sharing best practices\n      - Collaborative marketing\n      - Business networking\n      - Mentoring program\n      - Success stories\n\n3. Naik Kelas dengan:\n   a) Legal & Pembiayaan:\n      - Bantuan perizinan usaha\n      - Legal document templates\n      - Tax management\n      - Financial planning\n      - Micro financing\n      - Investment matching\n\n   b) Learning Management System:\n      - AI Tutor personal\n      - Materi praktis bisnis\n      - Video tutorials\n      - Case studies\n      - Business templates\n      - Skill assessment\n\nMANFAAT UTAMA:\n1. Untuk Bisnis:\n   - Peningkatan penjualan\n   - Efisiensi operasional\n   - Brand awareness\n   - Market expansion\n   - Cost reduction\n   - Business growth\n\n2. Untuk Pemilik UMKM:\n   - Skill development\n   - Network expansion\n   - Business knowledge\n   - Market insights\n   - Financial literacy\n   - Legal compliance\n\nSTATISTIK & KONTAK:\n- 10,000+ UMKM pengguna aktif\n- Tersedia di Play Store\n- Email: support@hubunk.id\n- Lokasi: Malang, Surabaya, Jakarta\n- Dibuat oleh PT Valid Data Solusi\n\nFORMAT JAWABAN:\n\n1. Untuk Pertanyaan Umum:\n   a) Struktur Jawaban:\n      - Definisi singkat\n      - Fitur utama\n      - Manfaat utama\n      - Contoh konkret\n      - Call to action\n\n   b) Contoh:\n      \"HUBUNK adalah ekosistem digital khusus UMKM yang membantu mengatasi masalah penjualan seret dan promosi ribet. Platform ini menawarkan profil bisnis profesional, website builder, AI business assistant, dan komunitas UMKM. Sudah 10,000+ UMKM berkembang bersama HUBUNK. Download aplikasinya di Play Store untuk mulai berkembang bersama kami.\"\n\n2. Untuk Pertanyaan Spesifik:\n   a) Struktur Jawaban:\n      - Penjelasan fitur\n      - Cara kerja\n      - Manfaat spesifik\n      - Contoh penggunaan\n      - Tips praktis\n\n   b) Contoh:\n      \"Fitur AI Business Assistant di HUBUNK membantu Anda menganalisis pasar dan mengambil keputusan bisnis. AI akan memberikan rekomendasi harga, analisis kompetitor, dan prediksi penjualan. Anda bisa melihat insight pasar terkini dan peluang ekspor. Gunakan fitur ini untuk mengoptimalkan strategi bisnis Anda.\"\n\n3. Untuk Pertanyaan Teknis:\n   a) Struktur Jawaban:\n      - Langkah-langkah detail\n      - Best practices\n      - Troubleshooting\n      - Tips optimasi\n      - Sumber bantuan\n\n   b) Contoh:\n      \"Untuk membuat website di HUBUNK: 1) Buat profil bisnis, 2) Pilih template, 3) Kustomisasi konten, 4) Tambahkan produk, 5) Atur payment gateway, 6) Publish. Website Anda akan langsung mobile-friendly dan teroptimasi untuk SEO. Gunakan analytics dashboard untuk memantau performa website.\"\n\n4. Untuk Pertanyaan Biaya:\n   a) Struktur Jawaban:\n      - Model pembayaran\n      - Paket tersedia\n      - Promo aktif\n      - ROI potential\n      - Kontak sales\n\n   b) Contoh:\n      \"HUBUNK menawarkan berbagai paket sesuai kebutuhan bisnis Anda. Untuk informasi detail tentang paket dan promo, silakan hubungi tim sales kami di support@hubunk.id. Kami akan membantu Anda memilih paket yang paling sesuai dengan kebutuhan bisnis Anda.\"\n\nKETENTUAN JAWABAN:\n1. Selalu gunakan bahasa yang:\n   - Profesional tapi mudah dipahami\n   - Ramah dan mengajak\n   - Fokus pada solusi\n   - Menggunakan contoh konkret\n\n2. Hindari:\n   - Menanyakan kembali pertanyaan\n   - Memberikan informasi yang tidak relevan\n   - Menggunakan jargon teknis berlebihan\n   - Menunda jawaban utama\n\n3. Selalu sertakan:\n   - Informasi yang diminta\n   - Contoh praktis\n   - Manfaat spesifik\n   - Call to action\n\n4. Sesuaikan jawaban dengan:\n   - Konteks pertanyaan\n   - Level pemahaman pengguna\n   - Kebutuhan spesifik\n   - Situasi bisnis\n\nJangan menanyakan kembali pertanyaan pengguna, langsung berikan informasi yang diminta sesuai format di atas.",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={{ $json.messages[0].content }}"
+            },
+            {
+              "type": "HumanMessagePromptTemplate",
+              "message": "={{ $json.messages[1].content }}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1560,
+        60
+      ],
+      "id": "28cf05e7-d479-4732-aa3c-1adfd8f7b699",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "gpt-3.5-turbo",
+        "options": {
+          "maxTokens": 1024,
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        280
+      ],
+      "id": "d75b9e76-b812-4abc-a9db-ad23b1968ceb",
+      "name": "ChatGPT Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "openai",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Format response\ntry {\n  const aiResponse = $input.item.json.text || $input.item.json.choices?.[0]?.message?.content || '';\n  return { json: { status: 'success', aiResponse, timestamp: new Date().toISOString() } };\n} catch (error) {\n  return { json: { status: 'error', error: error.message, timestamp: new Date().toISOString() } };\n}"
+      },
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        60
+      ],
+      "id": "fbfd6d6e-d922-4602-87ed-4d0d5b7dc966",
+      "name": "Format Response"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "02574945-b318-42f6-9737-29879d749a25",
+  "meta": {
+    "instanceId": "916221c94e2be35e17f13012cf8125638f80bf09a9b8db9f1d30baac0fc61f89"
+  },
+  "id": "4w3kKFY7jIIDywuU",
+  "tags": []
+}

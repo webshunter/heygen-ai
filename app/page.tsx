@@ -51,7 +51,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1">
             <h1 className="text-2xl md:text-5xl font-extrabold text-[#357A5B] mb-4 drop-shadow-lg">
-              AI Bisnis Coach untuk UMKM Anda
+              AI Bisnis Coach untuk Anda
             </h1>
             <p className="text-xl text-[#357A5B] mb-8 font-medium">
               Dapatkan solusi bisnis yang tepat dengan konsultasi AI di sini.
